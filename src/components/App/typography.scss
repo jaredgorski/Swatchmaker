@@ -1,0 +1,36 @@
+* {
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.cp--bold {
+  font-weight: 700;
+}
+
+.cp-typo-heading {
+  font-size: 13vw;
+
+  @media (min-width: 768px) {
+    font-size: 13vh;
+    line-height: 13vh;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 6vh;
+    line-height: 6vh;
+  }
+}
+
+.cp-typo-body {
+  font-size: 5.5vw;
+
+  @media (min-width: 768px) {
+    font-size: 4vh;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 3.5vh;
+  }
+}

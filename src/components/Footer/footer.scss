@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.cp-footer {
+  color: #111;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  line-height: 18px;
+
+  .footer-icon {
+    fill: #111;
+    margin: 0 12px 0;
+  }
+}
