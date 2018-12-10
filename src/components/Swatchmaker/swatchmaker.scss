@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow: hidden;
+}
+
+.swm-container {
+  height: 100vh;
+
+  .swm-header-container {
+    align-items: center;
+    border-bottom: 0.5px dashed rgba(23, 66, 109, 0.3);
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+
+    .swm-typo-heading {
+      margin: auto 60px;
+    }
+
+    .swm-heading-colorswitch {
+      background: #DDD;
+      border-radius: 21px;
+      box-shadow: 0px 0.65px 8px rgba(0, 0, 0, 0.15) inset;
+      display: flex;
+      height: 42px;
+      margin: auto 60px;
+      position: relative;
+      transition: 0.3s;
+      width: 76px;
+  
+      label {
+        cursor: pointer;
+        padding: 12px 32px;
+        z-index: 2;
+      }
+  
+      .swm-heading-colorswitch-checkbox {
+        cursor: pointer;
+        opacity: 0;
+      }
+  
+      &:after {
+        background: #f5f5f5;
+        bottom: 0;
+        border-radius: 19px;
+        box-shadow: 0px 0.65px 8px rgba(0, 0, 0, 0.2), 0px 1.65px 8px rgba(0, 0, 0, 0.1);
+        content: '';
+        height: 36px;
+        left: 0;
+        margin: 3px;
+        position: absolute;
+        transition: 0.3s ease-in-out;
+        width: 36px;
+      }
+  
+      &.switch-on {
+        background: rgb(41, 212, 78);
+  
+        &:after {
+          transform: translateX(34px);
+        }
+      }
+    }
+  }
+
+  .swm-interface-container {
+    display: grid;
+    grid-template: [row1-start] "menu swatch" auto [row1-end] / 30vw 70vw;
+    height: 90vh;
+    transition: 1s;
+
+    .swm-sliding-menu {
+      align-items: center;
+      display: flex;
+      grid-area: menu;
+
+      .swm-form-container {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+  
+        .swm-form {
+          align-items: center;
+          border-right: 0.5px dashed rgba(23, 66, 109, 0.3);
+          display: flex;
+          flex-flow: column;
+          height: 50vh;
+          justify-content: center;
+          padding: 18px;
+          position: relative;
+          width: 100%;
+          z-index: 1;
+  
+          .swm-input-fg {
+            height: 10vh;
+            margin: 4px 0 18px;
+            outline: none;
+            width: 100%;
+          }
+  
+          .swm-input-bg {
+            margin: 4px 0 18px;
+            outline: none;
+            width: 100%;
+          }
+  
+          .swm-download-link {
+            outline: none;
+            margin: 18px;
+          }
+        }
+      }
+    }
+
+    &.menu-open {
+      transform: none;
+
+      .swm-sliding-menu {
+        opacity: 1;
+        transition: 1.5s;
+      }
+    }
+
+    &.menu-closed {
+      transform: scale(1.5) translateX(-15vw);
+
+      .swm-sliding-menu {
+        opacity: 0;
+        transition: 0.8s;
+      }
+    }
+
+    .swm-canvas-container {
+      align-items: center;
+      display: flex;
+      grid-area: swatch;
+      justify-content: center;
+      padding: 18px;
+    }
+  }
+
+  .swm-menu-button {
+    align-items: center;
+    background: #fafafa;
+    box-shadow: 0px 0.65px 8px rgba(0, 0, 0, 0.2), 0px 1.65px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    font-size: 18px;
+    justify-content: center;
+    line-height: 30px;
+    position: fixed;
+    text-align: right;
+    top: 15vh;
+    transition: 0.4s;
+    width: 90px;
+    z-index: 1;
+
+    &.menu-open {
+      padding: 8px 4px 4px 48px;
+    }
+
+    &.menu-closed {
+      padding: 8px 4px 4px 36px;
+    }
+
+    &:hover {
+      background: #fff;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2), 0px 3px 16px rgba(0, 0, 0, 0.2);
+      color: #000;
+      transform: translateY(-0.5px);
+    }
+
+    span {
+      left: 20px;
+      position: absolute;
+    }
+
+    .swm-menu-checkbox {
+      cursor: pointer;
+      height: 24px;
+      left: -6px;
+      opacity: 0;
+      padding: 2px 12px 1px 0;
+      position: absolute;
+      z-index: 2;
+    }
+  }
+}

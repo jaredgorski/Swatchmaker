@@ -15,7 +15,7 @@ export function generateSwatchData(swatchObject) {
 function createSwatchMarkup(swatchObject) {
   const swatchFg = createSwatchFg(swatchObject);
   const swatchMarkup = `
-    <div style="background-color: ${swatchObject.colors.bg[0]}; box-sizing: border-box; display: flex; height: 100%; padding: 12px; width: 100%">
+    <div style="background-color: ${swatchObject.colors.bg[0]}; box-sizing: border-box; display: flex; height: 100%; padding: 2%; width: 100%">
       ${swatchFg}
     </div>
   `;

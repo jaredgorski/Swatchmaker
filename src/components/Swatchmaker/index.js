@@ -8,20 +8,23 @@ class Swatchmaker extends React.Component {
     super(props);
     this.canvasRef = React.createRef();
     this.state = {
-      canvas: {
-        downloadLink: '',
-        height: '300px',
-        width: (3 * 90) + 24 + 'px',
-      },
       swatchObject: {
         colors: {
-          bg: '#330044',
-          fg: '#119900,#667711,#FF0041',
+          bg: '#'+(Math.random()*0xFFFFFF<<0).toString(16),
+          fg: `#${(Math.random()*0xFFFFFF<<0).toString(16)},#${(Math.random()*0xFFFFFF<<0).toString(16)},#${(Math.random()*0xFFFFFF<<0).toString(16)}`,
         },
       },
+      colorswitch: {
+        checked: true,
+      },
+      menu: {
+        checked: false,
+      }
     }
 
     this.handleFormChange = this.handleFormChange.bind(this);
+    this.handleHeadingColorSwitch = this.handleHeadingColorSwitch.bind(this)
+    this.handleSlidingMenu = this.handleSlidingMenu.bind(this);
   }
 
   componentDidMount() {
@@ -97,30 +100,95 @@ class Swatchmaker extends React.Component {
     }
   }
 
-  render () {
+  handleSlidingMenu() {
+    if (this.state.menu.checked) {
+      this.setState(prevState => ({
+        ...prevState.menu.checked = false
+      }));
+    } else {
+      this.setState(prevState => ({
+        ...prevState.menu.checked = true
+      }));
+    }
+  }
 
+  handleHeadingColorSwitch() {
+    if (this.state.colorswitch.checked) {
+      this.setState(prevState => ({
+        ...prevState.colorswitch.checked = false
+      }));
+    } else {
+      this.setState(prevState => ({
+        ...prevState.colorswitch.checked = true
+      }));
+    }
+  }
+
+  render () {
     const containerClasses = 'swm-container';
+    const headerContainerClasses = 'swm-header-container';
+    const headingClasses = 'swm-typo-heading';
+    const swmHeadingColorSwitchClasses = `swm-heading-colorswitch ${this.state.colorswitch.checked ? 'switch-on' : 'switch-off'}`;
+    const swmHeadingColorSwitchCheckboxClasses = 'swm-heading-colorswitch-checkbox';
+    const swmInterfaceContainerClasses = `swm-interface-container ${this.state.menu.checked ? 'menu-open' : 'menu-closed'}`;
+    const swmSlidingMenuClasses = 'swm-sliding-menu';
     const swmCanvasContainerClasses = 'swm-canvas-container';
+    const swmFormContainerClasses = 'swm-form-container';
+    const swmFormClasses = 'swm-form';
+    const swmFormInputFgClasses = 'swm-input-fg';
+    const swmFormInputBgClasses = 'swm-input-bg';
+    const swmDownloadLinkClasses = 'swm-download-link';
+    const swmMenuButtonClasses = `swm-menu-button swm-noselect ${this.state.menu.checked ? 'menu-open' : 'menu-closed'}`;
+    const swmMenuCheckboxClasses = 'swm-menu-checkbox';
+
+    const headingColorSwitchCheckedAttribute = this.state.colorswitch.checked ? 'checked' : false;
+    const menuCheckedAttribute = this.state.menu.checked ? 'checked' : false;
+
+    const swmHeaderStyles = {
+      background: this.state.colorswitch.checked ? this.state.swatchObject.colors.bg : '#FFF',
+      'border-bottom': this.state.colorswitch.checked ? '0.5px dashed rgba(23, 66, 109, 0)' : '0.5px dashed rgba(23, 66, 109, 0.3)',
+      'box-shadow': this.state.colorswitch.checked ? '0px 0.65px 8px rgba(0, 0, 0, 0.2), 0px 1.65px 13px rgba(0, 0, 0, 0.2)' : '0px 0.65px 8px rgba(0, 0, 0, 0), 0px 1.65px 13px rgba(0, 0, 0, 0)',
+      transition: '0.6s',
+    };
+
     const swmCanvas = {
       style: {
-        border: '1px solid #000000',
-        height: this.state.canvas.height,
-        width: this.state.canvas.width,
+        height: '15vw',
+        width: '60vw',
       },
     };
 
     return (
       <div id="swmContainer" className={containerClasses}>
-        <p>Swatchmaker</p>
-        <div className={swmCanvasContainerClasses}>
-          <canvas id="canvas" ref={this.canvasRef} style={swmCanvas.style} />
-          <form>
-            <textarea name="fg" placeholder="Foreground" type="text" value={this.state.swatchObject.colors.fg} onChange={this.handleFormChange} />
-            <input name="bg" placeholder="Background" type="text" value={this.state.swatchObject.colors.bg} onChange={this.handleFormChange} />
-          </form>
-
-          <a href={this.updateSwatchDownloadUrl()} download="swatch.png">Download as png</a>
+        <div className={headerContainerClasses} style={swmHeaderStyles}>
+          <h1 className={headingClasses}>Swatchmaker</h1>
+          <div className={swmHeadingColorSwitchClasses} title="Toggle Header Fill">
+            <label>
+              <input className={swmHeadingColorSwitchCheckboxClasses} type="checkbox" value={headingColorSwitchCheckedAttribute} checked={!!headingColorSwitchCheckedAttribute} onChange={this.handleHeadingColorSwitch} />
+            </label>
+          </div>
         </div>
+        <div className={swmInterfaceContainerClasses}>
+          <aside className={swmSlidingMenuClasses}>
+            <div className={swmFormContainerClasses}>
+              <form className={swmFormClasses}>
+                <label>Background</label>
+                <input className={swmFormInputBgClasses} name="bg" placeholder="Background" type="text" value={this.state.swatchObject.colors.bg} onChange={this.handleFormChange} />
+                <label>Foreground</label>
+                <textarea className={swmFormInputFgClasses} name="fg" placeholder="Foreground" type="text" value={this.state.swatchObject.colors.fg} onChange={this.handleFormChange} />
+                <a className={swmDownloadLinkClasses} href={this.updateSwatchDownloadUrl()} download="swatch.png">Download as png</a>
+              </form>
+            </div>
+          </aside>
+          <div className={swmCanvasContainerClasses}>
+            <canvas ref={this.canvasRef} height="1000" width="4000" style={swmCanvas.style} />
+          </div>
+        </div>
+        <label className={swmMenuButtonClasses} title="Switch between Editor View and Full View">
+          <span>{menuCheckedAttribute ? '↸' : '⇥'}</span>
+          {menuCheckedAttribute ? 'Full View' : 'Editor'}
+          <input className={swmMenuCheckboxClasses} type="checkbox" value={menuCheckedAttribute} checked={!!menuCheckedAttribute} onChange={this.handleSlidingMenu} />
+        </label>
       </div>
     );
   }
