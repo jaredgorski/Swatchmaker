@@ -12,19 +12,20 @@ html {
 
   .swm-header-container {
     align-items: center;
-    border-bottom: 0.5px dashed rgba(23, 66, 109, 0.3);
+    box-shadow: 0px 0.65px 8px rgba(0, 0, 0, 0.2), 0px 1.65px 13px rgba(0, 0, 0, 0.2);
     display: flex;
     height: 10vh;
     justify-content: space-between;
     position: relative;
     text-align: center;
+    transition: 0.5s;
     z-index: 1;
 
     .swm-typo-heading {
       margin: auto 60px;
     }
 
-    .swm-heading-colorswitch {
+    .swm-heading-darkmodeswitch {
       background: #DDD;
       border-radius: 21px;
       box-shadow: 0px 0.65px 8px rgba(0, 0, 0, 0.15) inset;
@@ -41,7 +42,7 @@ html {
         z-index: 2;
       }
   
-      .swm-heading-colorswitch-checkbox {
+      .swm-heading-darkmodeswitch-checkbox {
         cursor: pointer;
         opacity: 0;
       }
@@ -74,12 +75,14 @@ html {
     display: grid;
     grid-template: [row1-start] "menu swatch" auto [row1-end] / 30vw 70vw;
     height: 90vh;
-    transition: 1s;
+    transition: 0.5s;
 
     .swm-sliding-menu {
       align-items: center;
+      box-shadow: 0px 0.65px 8px rgba(0, 0, 0, 0.2) inset, 0px 1.65px 13px rgba(0, 0, 0, 0.2) inset;
       display: flex;
       grid-area: menu;
+      transition: 0.5s;
 
       .swm-form-container {
         align-items: center;
@@ -87,17 +90,17 @@ html {
         justify-content: center;
         position: relative;
         width: 100%;
+        transition: 0.5s;
   
         .swm-form {
           align-items: center;
-          border-right: 0.5px dashed rgba(23, 66, 109, 0.3);
           display: flex;
           flex-flow: column;
           height: 50vh;
           justify-content: center;
           padding: 18px;
           position: relative;
-          width: 100%;
+          width: 75%;
           z-index: 1;
   
           .swm-input-fg {
@@ -124,18 +127,16 @@ html {
     &.menu-open {
       transform: none;
 
-      .swm-sliding-menu {
-        opacity: 1;
-        transition: 1.5s;
+      .swm-form-container {
+        transform: none;
       }
     }
 
     &.menu-closed {
       transform: scale(1.5) translateX(-15vw);
 
-      .swm-sliding-menu {
-        opacity: 0;
-        transition: 0.8s;
+      .swm-form-container {
+        transform: scale(0.8) translateX(4vw);
       }
     }
 
@@ -145,6 +146,7 @@ html {
       grid-area: swatch;
       justify-content: center;
       padding: 18px;
+      transition: 0.5s;
     }
   }
 
@@ -161,7 +163,7 @@ html {
     position: fixed;
     text-align: right;
     top: 15vh;
-    transition: 0.4s;
+    transition: 0.5s;
     width: 90px;
     z-index: 1;
 

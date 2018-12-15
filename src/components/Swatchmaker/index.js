@@ -14,16 +14,16 @@ class Swatchmaker extends React.Component {
           fg: `#${Math.random().toString(16).slice(2, 8).toUpperCase()},#${Math.random().toString(16).slice(2, 8).toUpperCase()},#${Math.random().toString(16).slice(2, 8).toUpperCase()}`,
         },
       },
-      colorswitch: {
-        checked: true,
+      darkModeSwitch: {
+        checked: false,
       },
       menu: {
-        checked: false,
+        checked: true,
       }
     }
 
     this.handleFormChange = this.handleFormChange.bind(this);
-    this.handleHeadingColorSwitch = this.handleHeadingColorSwitch.bind(this)
+    this.handleHeadingDarkModeSwitch = this.handleHeadingDarkModeSwitch.bind(this)
     this.handleSlidingMenu = this.handleSlidingMenu.bind(this);
   }
 
@@ -112,14 +112,14 @@ class Swatchmaker extends React.Component {
     }
   }
 
-  handleHeadingColorSwitch() {
-    if (this.state.colorswitch.checked) {
+  handleHeadingDarkModeSwitch() {
+    if (this.state.darkModeSwitch.checked) {
       this.setState(prevState => ({
-        ...prevState.colorswitch.checked = false
+        ...prevState.darkModeSwitch.checked = false
       }));
     } else {
       this.setState(prevState => ({
-        ...prevState.colorswitch.checked = true
+        ...prevState.darkModeSwitch.checked = true
       }));
     }
   }
@@ -128,8 +128,8 @@ class Swatchmaker extends React.Component {
     const containerClasses = 'swm-container';
     const headerContainerClasses = 'swm-header-container';
     const headingClasses = 'swm-typo-heading';
-    const swmHeadingColorSwitchClasses = `swm-heading-colorswitch ${this.state.colorswitch.checked ? 'switch-on' : 'switch-off'}`;
-    const swmHeadingColorSwitchCheckboxClasses = 'swm-heading-colorswitch-checkbox';
+    const swmHeadingDarkModeSwitchClasses = `swm-heading-darkmodeswitch ${this.state.darkModeSwitch.checked ? 'switch-on' : 'switch-off'}`;
+    const swmHeadingDarkModeSwitchCheckboxClasses = 'swm-heading-darkmodeswitch-checkbox';
     const swmInterfaceContainerClasses = `swm-interface-container ${this.state.menu.checked ? 'menu-open' : 'menu-closed'}`;
     const swmSlidingMenuClasses = 'swm-sliding-menu';
     const swmCanvasContainerClasses = 'swm-canvas-container';
@@ -141,14 +141,24 @@ class Swatchmaker extends React.Component {
     const swmMenuButtonClasses = `swm-menu-button swm-noselect ${this.state.menu.checked ? 'menu-open' : 'menu-closed'}`;
     const swmMenuCheckboxClasses = 'swm-menu-checkbox';
 
-    const headingColorSwitchCheckedAttribute = this.state.colorswitch.checked ? 'checked' : false;
+    const headingDarkModeSwitchCheckedAttribute = this.state.darkModeSwitch.checked ? 'checked' : false;
     const menuCheckedAttribute = this.state.menu.checked ? 'checked' : false;
 
     const swmHeaderStyles = {
-      background: this.state.colorswitch.checked ? this.state.swatchObject.colors.bg : '#FFF',
-      'border-bottom': this.state.colorswitch.checked ? '0.5px dashed rgba(23, 66, 109, 0)' : '0.5px dashed rgba(23, 66, 109, 0.3)',
-      'box-shadow': this.state.colorswitch.checked ? '0px 0.65px 8px rgba(0, 0, 0, 0.2), 0px 1.65px 13px rgba(0, 0, 0, 0.2)' : '0px 0.65px 8px rgba(0, 0, 0, 0), 0px 1.65px 13px rgba(0, 0, 0, 0)',
-      transition: '0.6s',
+      background: this.state.darkModeSwitch.checked ? '#444444' : '#FAFAFA',
+      color: this.state.darkModeSwitch.checked ? '#EAEAEA' : '#3A3A3A',
+    };
+
+    const swmSlidingMenuStyles = {
+      background: this.state.darkModeSwitch.checked ? '#555555' : '#F5F5F5',
+    };
+
+    const swmFormStyles = {
+      color: this.state.darkModeSwitch.checked ? '#EAEAEA' : '#3A3A3A',
+    };
+
+    const swmCanvasContainerStyles = {
+      background: this.state.darkModeSwitch.checked ? '#333333' : '#FFFFFF',
     };
 
     const swmCanvas = {
@@ -162,15 +172,15 @@ class Swatchmaker extends React.Component {
       <div id="swmContainer" className={containerClasses}>
         <div className={headerContainerClasses} style={swmHeaderStyles}>
           <h1 className={headingClasses}>Swatchmaker</h1>
-          <div className={swmHeadingColorSwitchClasses} title="Toggle Header Fill">
+          <div className={swmHeadingDarkModeSwitchClasses} title="Toggle Header Fill">
             <label>
-              <input className={swmHeadingColorSwitchCheckboxClasses} type="checkbox" value={headingColorSwitchCheckedAttribute} checked={!!headingColorSwitchCheckedAttribute} onChange={this.handleHeadingColorSwitch} />
+              <input className={swmHeadingDarkModeSwitchCheckboxClasses} type="checkbox" value={headingDarkModeSwitchCheckedAttribute} checked={!!headingDarkModeSwitchCheckedAttribute} onChange={this.handleHeadingDarkModeSwitch} />
             </label>
           </div>
         </div>
         <div className={swmInterfaceContainerClasses}>
-          <aside className={swmSlidingMenuClasses}>
-            <div className={swmFormContainerClasses}>
+          <aside className={swmSlidingMenuClasses} style={swmSlidingMenuStyles}>
+            <div className={swmFormContainerClasses} style={swmFormStyles}>
               <form className={swmFormClasses}>
                 <label>Background</label>
                 <input className={swmFormInputBgClasses} name="bg" placeholder="Background" type="text" value={this.state.swatchObject.colors.bg} onChange={this.handleFormChange} />
@@ -180,7 +190,7 @@ class Swatchmaker extends React.Component {
               </form>
             </div>
           </aside>
-          <div className={swmCanvasContainerClasses}>
+          <div className={swmCanvasContainerClasses} style={swmCanvasContainerStyles}>
             <canvas ref={this.canvasRef} height="1000" width="4000" style={swmCanvas.style} />
           </div>
         </div>
