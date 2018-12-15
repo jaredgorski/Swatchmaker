@@ -10,8 +10,8 @@ class Swatchmaker extends React.Component {
     this.state = {
       swatchObject: {
         colors: {
-          bg: '#'+(Math.random()*0xFFFFFF<<0).toString(16),
-          fg: `#${(Math.random()*0xFFFFFF<<0).toString(16)},#${(Math.random()*0xFFFFFF<<0).toString(16)},#${(Math.random()*0xFFFFFF<<0).toString(16)}`,
+          bg: `#${Math.random().toString(16).slice(2, 8).toUpperCase()}`,
+          fg: `#${Math.random().toString(16).slice(2, 8).toUpperCase()},#${Math.random().toString(16).slice(2, 8).toUpperCase()},#${Math.random().toString(16).slice(2, 8).toUpperCase()}`,
         },
       },
       colorswitch: {
