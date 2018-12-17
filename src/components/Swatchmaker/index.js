@@ -8,6 +8,7 @@ class Swatchmaker extends React.Component {
     super(props);
     this.canvasRef = React.createRef();
     this.state = {
+      downloadUrl: '',
       swatchObject: {
         colors: {
           bg: `#${Math.random().toString(16).slice(2, 8).toUpperCase()}`,
@@ -22,6 +23,7 @@ class Swatchmaker extends React.Component {
       }
     }
 
+    this.updateSwatchDownloadUrl = this.updateSwatchDownloadUrl.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleHeadingDarkModeSwitch = this.handleHeadingDarkModeSwitch.bind(this)
     this.handleSlidingMenu = this.handleSlidingMenu.bind(this);
@@ -66,15 +68,15 @@ class Swatchmaker extends React.Component {
     img.onload = () => {
       ctx.drawImage(img, 0, 0);
     }
-
-    this.updateSwatchDownloadUrl();
   }
 
   updateSwatchDownloadUrl() {
     const canvas = this.canvasRef.current;
     const downloadUrl = canvas ? canvas.toDataURL('image/png') : null;
 
-    return downloadUrl;
+    this.setState(prevState => ({
+      ...prevState.downloadUrl = downloadUrl
+    }));
   }
 
   handleFormChange(event) {
@@ -186,7 +188,7 @@ class Swatchmaker extends React.Component {
                 <input className={swmFormInputBgClasses} name="bg" placeholder="Background" type="text" value={this.state.swatchObject.colors.bg} onChange={this.handleFormChange} />
                 <label>Foreground</label>
                 <textarea className={swmFormInputFgClasses} name="fg" placeholder="Foreground" type="text" value={this.state.swatchObject.colors.fg} onChange={this.handleFormChange} />
-                <a className={swmDownloadLinkClasses} href={this.updateSwatchDownloadUrl()} download="swatch.png">Download</a>
+                <a className={swmDownloadLinkClasses} href={this.state.downloadUrl} onClick={this.updateSwatchDownloadUrl} download="swatch.png">Download</a>
               </form>
             </div>
           </aside>
