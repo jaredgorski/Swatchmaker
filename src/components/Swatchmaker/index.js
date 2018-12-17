@@ -186,7 +186,7 @@ class Swatchmaker extends React.Component {
                 <input className={swmFormInputBgClasses} name="bg" placeholder="Background" type="text" value={this.state.swatchObject.colors.bg} onChange={this.handleFormChange} />
                 <label>Foreground</label>
                 <textarea className={swmFormInputFgClasses} name="fg" placeholder="Foreground" type="text" value={this.state.swatchObject.colors.fg} onChange={this.handleFormChange} />
-                <a className={swmDownloadLinkClasses} href={this.updateSwatchDownloadUrl()} download="swatch.png">Download as png</a>
+                <a className={swmDownloadLinkClasses} href={this.updateSwatchDownloadUrl()} download="swatch.png">Download</a>
               </form>
             </div>
           </aside>

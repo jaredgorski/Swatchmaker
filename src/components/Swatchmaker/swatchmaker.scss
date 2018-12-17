@@ -1,4 +1,5 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -18,11 +19,23 @@ html {
     justify-content: space-between;
     position: relative;
     text-align: center;
-    transition: 0.5s;
+    transition: 0.4s ease-out;
     z-index: 1;
 
     .swm-typo-heading {
       margin: auto 60px;
+      position: relative;
+
+      &:after {
+        background: rgba(170, 170, 157, 0.3);
+        content: "";
+        height: 46px;
+        left: -5px;
+        position: absolute;
+        top: -11px;
+        width: 115%;
+        z-index: -1;
+      }
     }
 
     .swm-heading-darkmodeswitch {
@@ -75,14 +88,15 @@ html {
     display: grid;
     grid-template: [row1-start] "menu swatch" auto [row1-end] / 30vw 70vw;
     height: 90vh;
-    transition: 0.5s;
+    transition: 0.4s ease-out;
 
     .swm-sliding-menu {
       align-items: center;
       box-shadow: 0px 0.65px 8px rgba(0, 0, 0, 0.2) inset, 0px 1.65px 13px rgba(0, 0, 0, 0.2) inset;
       display: flex;
       grid-area: menu;
-      transition: 0.5s;
+      height: 100vh;
+      transition: 0.4s ease-out;
 
       .swm-form-container {
         align-items: center;
@@ -90,7 +104,7 @@ html {
         justify-content: center;
         position: relative;
         width: 100%;
-        transition: 0.5s;
+        transition: 0.4s ease-out;
   
         .swm-form {
           align-items: center;
@@ -102,23 +116,63 @@ html {
           position: relative;
           width: 75%;
           z-index: 1;
-  
-          .swm-input-fg {
-            height: 10vh;
-            margin: 4px 0 18px;
-            outline: none;
-            width: 100%;
+
+          label {
+            font-size: 18px;
+            font-weight: 500;
+            position: relative;
+
+            &:after {
+              background: rgba(170, 170, 157, 0.3);
+              content: "";
+              height: 26px;
+              left: -5px;
+              position: absolute;
+              top: -11px;
+              width: 115%;
+              z-index: -1;
+            }
           }
   
           .swm-input-bg {
-            margin: 4px 0 18px;
+            height: 30px;
+            font-size: 14px;
+            margin: 8px 0 36px;
             outline: none;
+            padding: 0 10px;
+            width: 100%;
+          }
+
+          .swm-input-fg {
+            height: 10vh;
+            font-size: 14px;
+            margin: 8px 0 36px;
+            min-height: 30px;
+            outline: none;
+            padding: 4px 10px;
             width: 100%;
           }
   
           .swm-download-link {
-            outline: none;
+            background: #fafafa;
+            box-shadow: 0px 0.65px 8px rgba(0, 0, 0, 0.2), 0px 1.65px 8px rgba(0, 0, 0, 0.1);
+            color: #333;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 30px;
             margin: 18px;
+            outline: none;
+            padding: 4px 18px;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.4s ease-out;
+
+            &:hover {
+              background: #fff;
+              box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2), 0px 3px 16px rgba(0, 0, 0, 0.2);
+              color: #000;
+              transform: translateY(-0.5px);
+            }
           }
         }
       }
@@ -136,7 +190,7 @@ html {
       transform: scale(1.5) translateX(-15vw);
 
       .swm-form-container {
-        transform: scale(0.8) translateX(4vw);
+        transform: scale(0.7) translateX(6vw);
       }
     }
 
@@ -146,7 +200,7 @@ html {
       grid-area: swatch;
       justify-content: center;
       padding: 18px;
-      transition: 0.5s;
+      transition: 0.4s ease-out;
     }
   }
 
@@ -154,16 +208,18 @@ html {
     align-items: center;
     background: #fafafa;
     box-shadow: 0px 0.65px 8px rgba(0, 0, 0, 0.2), 0px 1.65px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: content-box;
     color: #333;
     cursor: pointer;
     display: flex;
     font-size: 18px;
     justify-content: center;
     line-height: 30px;
+    outline: none;
     position: fixed;
     text-align: right;
     top: 15vh;
-    transition: 0.5s;
+    transition: 0.4s ease-out;
     width: 90px;
     z-index: 1;
 
