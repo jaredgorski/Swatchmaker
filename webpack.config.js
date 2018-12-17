@@ -37,7 +37,7 @@ module.exports = {
           outputPath: 'images/'
         }
       }
-    ],
+    ]
   },
   output: {
     path: __dirname + '/build',
@@ -52,6 +52,6 @@ module.exports = {
     ]),
     new MiniCssExtractPlugin({
       filename: 'commons.css',
-    }),
-  ],
+    })
+  ]
 };
