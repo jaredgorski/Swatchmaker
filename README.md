@@ -14,7 +14,7 @@ Simple web app for generating and downloading high-resolution, custom color swat
 
 ```
 
-link: https://react-swatchmaker.wedeploy.io/
+link: https://jg-swatchmaker.wedeploy.io/
 
 ### Develop:
 
