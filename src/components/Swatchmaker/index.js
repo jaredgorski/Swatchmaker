@@ -174,7 +174,7 @@ class Swatchmaker extends React.Component {
       <div id="swmContainer" className={containerClasses}>
         <div className={headerContainerClasses} style={swmHeaderStyles}>
           <h1 className={headingClasses}>Swatchmaker</h1>
-          <div className={swmHeadingDarkModeSwitchClasses} title="Toggle Header Fill">
+          <div className={swmHeadingDarkModeSwitchClasses} title="Toggle Dark Mode">
             <label>
               <input className={swmHeadingDarkModeSwitchCheckboxClasses} type="checkbox" value={headingDarkModeSwitchCheckedAttribute} checked={!!headingDarkModeSwitchCheckedAttribute} onChange={this.handleHeadingDarkModeSwitch} />
             </label>
