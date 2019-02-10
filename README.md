@@ -1,5 +1,5 @@
 # Swatchmaker
-Simple web app for generating and downloading high-resolution, custom color swatches
+Simple web app for generating and downloading high-quality, custom color swatches
 
 ![](.media/swatchmaker-demo.gif)
 
