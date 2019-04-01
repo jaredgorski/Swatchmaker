@@ -47,7 +47,7 @@ module.exports = {
     HTMLWebpackPluginConfig,
     new CopyWebpackPlugin([
       {
-        from: './wedeploy.json'
+        from: './now.json'
       }
     ]),
     new MiniCssExtractPlugin({
