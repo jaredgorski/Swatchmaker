@@ -1,9 +1,9 @@
 # Swatchmaker
-Simple web app for generating and downloading high-resolution, custom color swatches
+Simple web app for generating and downloading high-quality, custom color swatches
 
 ![](.media/swatchmaker-demo.gif)
 
-link: https://jg-swatchmaker.wedeploy.io/
+link: https://swatchmaker-eqp9m2m8o.now.sh/
 
 ### Develop:
 
