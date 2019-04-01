@@ -3,7 +3,7 @@ Simple web app for generating and downloading high-quality, custom color swatche
 
 ![](.media/swatchmaker-demo.gif)
 
-link: https://swatchmaker-eqp9m2m8o.now.sh/
+link: https://swatchmaker.jaredgorski6.now.sh/
 
 ### Develop:
 
